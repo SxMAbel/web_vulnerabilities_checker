@@ -1,7 +1,13 @@
 const {
   checkForXSS,
   checkForSQLInjection,
-  checkForCSRF,
+  checkForCSRF1,
+  checkForCommandInjection,
+  checkForFileInclusion,
+  checkForIDOR,
+  checkForCSRF2,
+  checkForUnvalidatedRedirects,
+  checkForSSRF,
 } = require("./utils/functions");
 const axios = require("axios");
 const cheerio = require("cheerio");
@@ -22,10 +28,15 @@ async function scanWebsite(url) {
     const $ = cheerio.load(response.data);
 
     // Check for common vulnerabilities
-    checkForXSS($);
-    checkForSQLInjection($);
-    checkForCSRF($);
-
+    checkForXSS($, url);
+    checkForSQLInjection($, url);
+    checkForCSRF1($, url);
+    checkForCommandInjection($, url);
+    checkForFileInclusion($, url);
+    checkForIDOR($, url);
+    checkForCSRF2($, url);
+    checkForUnvalidatedRedirects($, url);
+    checkForSSRF($, url);
     // Print success message
     console.log(`Website at ${url} is not vulnerable.`);
   } catch (error) {

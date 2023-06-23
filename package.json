@@ -1,6 +1,6 @@
 {
   "name": "web_vulnerabilities_checker",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A script to check for web vulnerabilities",
   "main": "index.js",
   "scripts": {
